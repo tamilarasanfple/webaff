@@ -1,23 +1,23 @@
 version: '3.0'
 services:
-  web-member:
+  web-aff:
     image: node:18.16
-    container_name: web-member
+    container_name: web-aff
     #restart: unless-stopped
     networks:
       - net
     ports:
-      - "3001:3000"
+      - "3000:3000"
     extra_hosts:
-      - "local.member.siam66.com:host-gateway"
-    working_dir: /app/web
+      - "local.aff.siam66.com:host-gateway"
+    working_dir: /app/aff
     volumes:
-      - ./template_asia_fe/web:/app/web
+      - ./opfe-aff-nuxt/aff:/app/aff
     command: sh -c "cp -r /app/template_asia_fe/web/. /app/web/ && npm install && npm run deploy"
     environment:
-      - npm_config_project=siam66   #merchant code, not sure check with FE
-      - npm_config_env=stage        #value = stage / prod
+      - npm_config_project=siam66    #merchant code, not sure check with FE
+      - npm_config_env=stage         #value = dev/ stage / prod
 
 networks:
   net:
-    driver: bridge
+   driver: bridge
